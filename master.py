@@ -16,9 +16,9 @@ def loaddata():
 	else:
 		return 'Can not download data'
 
-@master.route('/getinfo/Minsk')
-def get_info(city = 'Minsk'):
+#@master.route('/getinfo/Minsk')
+#def get_info(city = 'Minsk'):
 
 
 if __name__ == '__main__':
-	master.run(debug=True)
+	master.run(host='0.0.0.0', port=2006, debug=True)

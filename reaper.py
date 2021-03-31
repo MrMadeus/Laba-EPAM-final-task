@@ -13,13 +13,13 @@ def get_data():
 			res = requests.get("http://api.openweathermap.org/data/2.5/weather", 
 				params={'id': city, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
 			data = res.json()
-			return ("conditions:", data['weather'][0]['description'])
+			requests.post('http://0.0.0.0:2010/putdata', data)
 		except Exception as e:
 			return ("Exception (weather):", e)
 
-@reaper.route('http://0.0.0.0:2010/putdata', methods='POST')
-def send_data(data):
-	pass
+#@reaper.route('http://0.0.0.0:2010/putdata', methods='POST')
+#def send_data(data):
+#	pass
 
 if __name__ == '__main__':
 	reaper.run(host='0.0.0.0', port=2008, debug=True)
