@@ -17,5 +17,9 @@ def get_data():
 		except Exception as e:
 			return ("Exception (weather):", e)
 
+@reaper.route('http://0.0.0.0:2010/putdata', methods='POST')
+def send_data(data):
+	pass
+
 if __name__ == '__main__':
 	reaper.run(host='0.0.0.0', port=2008, debug=True)

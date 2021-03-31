@@ -10,14 +10,14 @@ def index():
 
 @master.route('/loaddata')
 def loaddata():
-	load = requests.get(r'http://0.0.0.0:2008/getdata')
+	load = requests.get('http://0.0.0.0:2008/getdata')
 	if load.status_code == 200:
 		return 'Done'
 	else:
 		return 'Can not download data'
 
 @master.route('/getinfo/Minsk')
-def get_info():
+def get_info(city = 'Minsk'):
 
 
 if __name__ == '__main__':
