@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+ master:
+  build: master/
+  command: master.py
+  ports:
+    - 2006:2006
+
+ reaper:
+  build: reaper/
+  command: reaper.py
+  ports:
+    - 2008:2008
+
+ keeper:
+  build: keeper/
+  command: keeper.py
+  ports:
+    - 2010:2010
