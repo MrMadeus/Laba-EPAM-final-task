@@ -33,7 +33,12 @@ def test():
 
 @keeper.route('/returndata', methods=['GET'])
 def return_data():
-	pass
+	db = sqlite3.connect('weather.sqlite')
+	c = db.cursor()
+	c.execute('''SELECT * FROM curent_weather''')
+	get_data = json.dumps(c.fetchall(), ensure_ascii=False)
+	c.close()
+	return get_data
 
 if __name__ == '__main__':
 	keeper.run(host='0.0.0.0', port=2010, debug=True)

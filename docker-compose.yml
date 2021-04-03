@@ -1,20 +1,33 @@
 version: "3"
 
 services:
+ db:
+  image: keinos/sqlite:latest
+  volumes:
+    - ./database.db:/db/db.db
+    
  master:
-  build: master/
-  command: master.py
+  build: ./master
+  command: python3 master.py
+  volumes:
+    - .:/master
   ports:
     - 2006:2006
 
  reaper:
-  build: reaper/
-  command: reaper.py
+  build: ./reaper
+  command: python3 reaper.py
+  volumes:
+    - .:/reaprer
   ports:
     - 2008:2008
 
  keeper:
-  build: keeper/
-  command: keeper.py
+  build: ./keeper
+  command: python3 keeper.py
+  volumes:
+    - .:/keeper
   ports:
     - 2010:2010
+  depends_on:
+    - db
