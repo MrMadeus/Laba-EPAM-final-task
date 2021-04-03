@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask
+from flask import Flask, request
 import requests
 
 master = Flask (__name__)
@@ -15,6 +15,11 @@ def loaddata():
 		return 'Done'
 	else:
 		return 'Can not download data'
+
+@master.route('/log', methods=['POST', 'GET'])
+def log():
+	log_data = request.json
+	print(str(log_data))
 
 #@master.route('/getinfo/Minsk')
 #def get_info(city = 'Minsk'):
