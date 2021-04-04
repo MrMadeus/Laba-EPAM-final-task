@@ -1,11 +1,6 @@
 version: "3"
 
 services:
- db:
-  image: keinos/sqlite:latest
-  volumes:
-    - ./database.db:/db/db.db
-    
  master:
   build: ./master
   command: python3 master.py
@@ -29,5 +24,3 @@ services:
     - .:/keeper
   ports:
     - 2010:2010
-  depends_on:
-    - db
