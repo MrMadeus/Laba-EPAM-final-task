@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, request, jsonify
+from flask import Flask, request
 import requests
 import sqlite3
 import json
@@ -13,16 +13,16 @@ def put_data():
 	db = sqlite3.connect('weather.sqlite')
 	c = db.cursor()
 	c.execute('''CREATE TABLE IF NOT EXISTS curent_weather 
-		(city text PRIMARY KEY, 
-		temp real, 
-		wind text)''')
-	c.execute('''SELECT city FROM curent_weather WHERE city=?''', (data_for_db[0],))
+		("city" text PRIMARY KEY, 
+		"temp" real, 
+		"wind" text)''')
+	c.execute('''SELECT "city" FROM curent_weather WHERE "city"=?''', (data_for_db[0],))
 	exist = c.fetchall()
 	if not exist:
 		c.execute('INSERT INTO curent_weather VALUES (?,?,?)', data_for_db)
 		db.commit()
 	else:
-		c.execute('UPDATE curent_weather SET temp=? wind=? WHERE city=?', (data_for_db[1], data_for_db[2], data_for_db[0]))
+		c.execute('UPDATE curent_weather SET "temp"=? "wind"=? WHERE "city"=?', (data_for_db[1], data_for_db[2], data_for_db[0]))
 	c.close()
 	return '', 200
 
